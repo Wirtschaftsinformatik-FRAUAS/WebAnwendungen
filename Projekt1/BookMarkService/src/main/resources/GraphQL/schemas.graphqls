@@ -1,0 +1,17 @@
+type Bookmark {
+  bookmarkId: ID!
+  userId: ID!
+  title: String!
+  link: String!
+}
+
+type Query {
+  getAllBookmarksByUserId(userId: ID!): [Bookmark!]!
+  getBookMarkByUserId(userId: ID!, bookmarkId: ID!): Bookmark
+}
+
+type Mutation {
+  createBookmark(userId: ID!, title: String!, link: String!): Bookmark!
+  updateBookmarkForUserId(userId: ID!, bookmarkId: ID!, title: String!, link: String!): Bookmark!
+  deleteBookmarkByUserId(userId: ID!, bookmarkId: ID!): Bookmark
+}
