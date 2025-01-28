@@ -1,0 +1,22 @@
+# Payment type defines the structure of a Payment object
+type Payment {
+    id: ID!      # "!" means it cannot be null
+    orderId: ID!
+    userId: ID!  # Hinzugefügt: userId, um die Zuordnung zum Benutzer darzustellen
+    amount: Float!
+}
+
+
+# Query type defines all the read operations
+type Query {
+    allPayments: [Payment]!
+    paymentById(id: ID!): Payment
+    paymentsByUserId(userId: ID!): [Payment]! # Neue Abfrage für Zahlungen eines bestimmten Benutzers
+}
+
+# Mutation type defines all the write operations
+type Mutation {
+    addPayment(orderId: ID!, userId: ID!, amount: Float!): Payment! # userId hinzugefügt
+    updatePayment(id: ID!, orderId: ID!, amount: Float!): Payment!
+    deletePayment(id: ID!): Int
+}
